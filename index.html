@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <style>
+            body, html { 
+                height: 100%; 
+                overflow: hidden; 
+                padding: 0; 
+                margin: 0; 
+            }
+
+            .page {
+              top: 0; 
+              left: 0; 
+              width: 100%; 
+              min-height: 100%; 
+              position: absolute; 
+              display: none; 
+              overflow: hidden;
+              border: 0;
+            }
+
+            .currentPage { 
+              display: block; 
+            }
+
+            .full {
+                display:block;
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover;
+                object-position: top;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            var TIME_PER_PAGE = 30000;
+            window.onload = function() {
+                var pages = document.querySelectorAll('.page'),
+                    numPages = pages ? pages.length : 0;
+                    i = -1;
+
+                function nextPage() {
+                    if (i >= 0)
+                        pages[i].classList.remove('currentPage');
+
+                    i++;
+                    pages[i].classList.add('currentPage');
+                    if (i < numPages - 1)
+                      setTimeout(nextPage, TIME_PER_PAGE);
+                }
+
+                nextPage();
+            }
+        </script>
+
+        <div class="page"><img class="full" src="image1.png" alt="1"></div>
+        <div class="page"><img class="full" src="image2.png" alt="2"></div>
+        <div class="page"><img class="full" src="image3.png" alt="3"></div>
+        <div class="page"><img class="full" src="image4.png" alt="4"></div>
+        <div class="page"><img class="full" src="image5.png" alt="5"></div>
+    </body>
+    </html>
+S
