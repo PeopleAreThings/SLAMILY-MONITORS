@@ -36,23 +36,30 @@
         <script>
             var TIME_PER_PAGE = 30000;
             window.onload = function() {
-                var pages = document.querySelectorAll('.page'),
-                    numPages = pages ? pages.length : 0;
-                    i = -1;
-
+                var pages = document.querySelectorAll('.page');
+                var numPages = pages.length;
+                var i = -1;
+        
                 function nextPage() {
-                    if (i >= 0)
+                    if (i >= 0) {
                         pages[i].classList.remove('currentPage');
-
+                    }
+        
                     i++;
+        
+                    if (i >= numPages) {
+                        i = 0;  // Loop back to the first page
+                    }
+        
                     pages[i].classList.add('currentPage');
-                    if (i < numPages - 1)
-                      setTimeout(nextPage, TIME_PER_PAGE);
+        
+                    setTimeout(nextPage, TIME_PER_PAGE);
                 }
-
+        
                 nextPage();
-            }
+            };
         </script>
+        
 
         <div class="page"><img class="full" src="1.png" alt="1"></div>
         <div class="page"><img class="full" src="2.png" alt="2"></div>
